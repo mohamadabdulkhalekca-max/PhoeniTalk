@@ -35,8 +35,9 @@ class _AnalyticsViewBodyState extends State<AnalyticsViewBody> {
     int validCount = 0;
 
     for (var quiz in quizzes) {
-      if (quiz['time'] != null && quiz['time'].toString().contains(":")) {
-        final parts = quiz['time'].split(':');
+      if (quiz['quiz_time'] != null &&
+          quiz['quiz_time'].toString().contains(":")) {
+        final parts = quiz['quiz_time'].split(':');
         if (parts.length == 2) {
           final minutes = int.tryParse(parts[0]) ?? 0;
           final seconds = int.tryParse(parts[1]) ?? 0;
@@ -80,7 +81,7 @@ class _AnalyticsViewBodyState extends State<AnalyticsViewBody> {
           }
         }
 
-        avgScore = totalScores / 3;
+        avgScore = validQuizCount == 0 ? 0 : totalScores / validQuizCount;
 
         double totalCompletion = 0;
 
@@ -91,7 +92,7 @@ class _AnalyticsViewBodyState extends State<AnalyticsViewBody> {
           totalCompletion += (correctAnswers / totalQuestions) * 100;
         }
 
-        avgCompletion = totalCompletion / 3;
+        avgCompletion = totalCompletion / quizzes.length;
         quizAvgTime = _calculateAvgTime(quizzes);
       }
 

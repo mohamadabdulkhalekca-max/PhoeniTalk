@@ -37,6 +37,11 @@ class SpeechToTextService {
           'language': 'en',
           'encoding': 'linear16',
           'sample_rate': 16000,
+          'model': 'nova-2',
+          'smart_format': true,
+          'punctuate': true,
+          'interim_results': false,
+          'endpointing': 300,
         },
       );
 

@@ -5,11 +5,14 @@ import 'app/app.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Supabase.initialize(
-    url: 'https://isjjhzsttxvwmrxiumpz.supabase.co',
-    anonKey:
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlzampoenN0dHh2d21yeGl1bXB6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQwMzA1OTgsImV4cCI6MjA2OTYwNjU5OH0.WO16feFQCu3RJoCPtLiZ3UHQbu3LcOvMn46yfvV0-eQ',
+  const supabaseUrl = String.fromEnvironment('SUPABASE_URL');
+  const supabaseAnonKey = String.fromEnvironment('SUPABASE_ANON_KEY');
+  assert(
+    supabaseUrl.isNotEmpty && supabaseAnonKey.isNotEmpty,
+    'Missing SUPABASE_URL/SUPABASE_ANON_KEY. Run with '
+    '--dart-define-from-file=dart_defines.json',
   );
 
+  await Supabase.initialize(url: supabaseUrl, anonKey: supabaseAnonKey);
   runApp(const MainApp());
 }

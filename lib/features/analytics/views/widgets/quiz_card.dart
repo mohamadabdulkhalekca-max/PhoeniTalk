@@ -76,7 +76,7 @@ class QuizCard extends StatelessWidget {
             ),
             if (isExpanded) ...[
               const SizedBox(height: 16),
-              Divider(color: Colors.grey.withOpacity(0.2)),
+              Divider(color: Colors.grey.withValues(alpha: 0.2)),
               const SizedBox(height: 8),
               Row(
                 children: [

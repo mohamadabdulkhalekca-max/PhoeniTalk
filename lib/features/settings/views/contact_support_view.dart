@@ -28,7 +28,7 @@ class ContactSupportView extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 textStyle: const TextStyle(fontSize: 16),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadiusGeometry.circular(10),
+                  borderRadius: BorderRadius.circular(10),
                 ),
                 backgroundColor: AppColors.primaryRed,
                 foregroundColor: Colors.white,
@@ -43,7 +43,7 @@ class ContactSupportView extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 textStyle: const TextStyle(fontSize: 16),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadiusGeometry.circular(10),
+                  borderRadius: BorderRadius.circular(10),
                 ),
                 backgroundColor: AppColors.primaryRed,
                 foregroundColor: Colors.white,

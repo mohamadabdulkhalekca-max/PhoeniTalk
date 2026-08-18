@@ -3,7 +3,7 @@ import 'package:deepgram_speech_to_text/deepgram_speech_to_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:uniapp/core/services/speech_to_text_service.dart';
+import 'package:uniapp/features/quizzes/data/speech_to_text_service.dart';
 import 'package:uniapp/core/widgets/app_button.dart';
 import 'package:uniapp/features/completed/completed_view.dart';
 import 'package:uniapp/features/quizzes/data/local_data.dart';
@@ -45,32 +45,19 @@ class _QuizViewState extends State<QuizView> {
       questions.isEmpty ? 0 : (currentPage + 1) / questions.length;
   DateTime? _quizStartTime;
   Duration? _quizCompletionTime;
-  Timer? _quizTimer;
-  Duration _elapsedTime = Duration.zero;
 
   @override
   void initState() {
     super.initState();
     _speechService = SpeechToTextService(
-      deepgram: Deepgram('821d8edffaa235b802b89c1649a285b3b2a34cbc'),
+      deepgram: Deepgram(const String.fromEnvironment('DEEPGRAM_API_KEY')),
     );
     _loadQuestions();
-    _startQuizTimer();
-  }
-
-  void _startQuizTimer() {
     _quizStartTime = DateTime.now();
-    _quizTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      setState(() {
-        _elapsedTime = DateTime.now().difference(_quizStartTime!);
-      });
-    });
   }
 
   void _stopQuizTimer() {
-    _quizTimer?.cancel();
     _quizCompletionTime = DateTime.now().difference(_quizStartTime!);
-    print("_quizCompletionTime: $_quizCompletionTime");
   }
 
   Future<void> _loadQuestions() async {
@@ -122,7 +109,7 @@ class _QuizViewState extends State<QuizView> {
         (result) {
           if (result.transcript?.isNotEmpty == true) {
             setState(() {
-              currentTranscript = result.transcript!;
+              currentTranscript += '${result.transcript!} ';
             });
           }
         },
@@ -176,6 +163,7 @@ class _QuizViewState extends State<QuizView> {
         currentQuestion,
         transcript,
       );
+      if (!mounted) return;
 
       if (response.isNotEmpty) {
         setState(() {
@@ -186,9 +174,9 @@ class _QuizViewState extends State<QuizView> {
         final scorePerQuestion = 100 / questions.length;
         final earnedScore = lastAnswerStatus == true ? scorePerQuestion : 0;
         if (lastAnswerStatus == false) {
-          bool q1Error = currentPage == 1 ? true : false;
-          bool q2Error = currentPage == 2 ? true : false;
-          bool q3Error = currentPage == 3 ? true : false;
+          bool q1Error = currentPage == 0;
+          bool q2Error = currentPage == 1;
+          bool q3Error = currentPage == 2;
 
           await saveErrors(q1Error, q2Error, q3Error);
         }
@@ -196,9 +184,11 @@ class _QuizViewState extends State<QuizView> {
           '${widget.quizTitle}_$currentPage',
           earnedScore.toDouble(),
         );
+        if (!mounted) return;
       }
       _showFeedbackBottomSheet();
     } catch (e) {
+      if (!mounted) return;
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(SnackBar(content: Text('Error evaluating answer: $e')));
@@ -243,6 +233,7 @@ class _QuizViewState extends State<QuizView> {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
+      isDismissible: false,
       backgroundColor: Colors.transparent,
       builder:
           (context) => Container(
@@ -326,7 +317,8 @@ class _QuizViewState extends State<QuizView> {
             ),
             QuizProgressBar(progress: progress),
             const SizedBox(height: 24),
-            Expanded(
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.5,
               child: PageView.builder(
                 controller: _pageController,
                 itemCount: questions.length,
@@ -334,27 +326,28 @@ class _QuizViewState extends State<QuizView> {
                 itemBuilder: (context, index) {
                   return AnimatedSwitcher(
                     duration: const Duration(milliseconds: 500),
-                    child: Column(
+                    child: SingleChildScrollView(
                       key: ValueKey(questions[index]),
-                      children: [
-                        QuizQuestionCard(
-                          question: questions[index],
-                          isAnswering: isAnswering,
-                        ),
-                        if (answerFeedback == null)
-                          MicroStatus(
+                      child: Column(
+                        children: [
+                          QuizQuestionCard(
+                            question: questions[index],
                             isAnswering: isAnswering,
-                            currentTranscript: currentTranscript,
                           ),
-                        const SizedBox(height: 32),
-                      ],
+                          if (answerFeedback == null)
+                            MicroStatus(
+                              isAnswering: isAnswering,
+                              currentTranscript: currentTranscript,
+                            ),
+                        ],
+                      ),
                     ),
                   );
                 },
               ),
             ),
 
-            const SizedBox(height: 16),
+            const SizedBox(height: 24),
             QuizButton(
               answerFeedback: answerFeedback,
               isAnswering: isAnswering,
@@ -362,6 +355,7 @@ class _QuizViewState extends State<QuizView> {
                 _handleVoiceAnswer();
               },
             ),
+            const Spacer(),
           ],
         ),
       ),

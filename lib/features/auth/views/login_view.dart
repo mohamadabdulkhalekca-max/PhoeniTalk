@@ -48,7 +48,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                 spacing: 20,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset('assets/images/PhoeniTalkl.png', height: 150),
+                  Image.asset('assets/icons/PhoeniTalk.png', height: 150),
 
                   Text(
                     "Lets get you in!",

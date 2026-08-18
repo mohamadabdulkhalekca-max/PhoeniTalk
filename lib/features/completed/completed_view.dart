@@ -144,7 +144,7 @@ class _QuizCompletedViewState extends State<QuizCompletedView>
                           shape: BoxShape.circle,
                           boxShadow: [
                             BoxShadow(
-                              color: scoreColor.withOpacity(0.3),
+                              color: scoreColor.withValues(alpha: 0.3),
                               blurRadius: 20,
                               spreadRadius: 5,
                             ),
@@ -170,7 +170,7 @@ class _QuizCompletedViewState extends State<QuizCompletedView>
                           shadows: [
                             Shadow(
                               blurRadius: 10,
-                              color: Colors.white.withOpacity(0.8),
+                              color: Colors.white.withValues(alpha: 0.8),
                               offset: const Offset(2, 2),
                             ),
                           ],
@@ -209,7 +209,7 @@ class _QuizCompletedViewState extends State<QuizCompletedView>
                                 shadows: [
                                   Shadow(
                                     blurRadius: 10,
-                                    color: Colors.white.withOpacity(0.8),
+                                    color: Colors.white.withValues(alpha: 0.8),
                                     offset: const Offset(2, 2),
                                   ),
                                 ],
@@ -248,7 +248,7 @@ class _QuizCompletedViewState extends State<QuizCompletedView>
                             borderRadius: BorderRadius.circular(16),
                             boxShadow: [
                               BoxShadow(
-                                color: Colors.black.withOpacity(0.05),
+                                color: Colors.black.withValues(alpha: 0.05),
                                 blurRadius: 20,
                                 offset: const Offset(0, 10),
                               ),
@@ -293,7 +293,7 @@ class _QuizCompletedViewState extends State<QuizCompletedView>
                           quizTitle: widget.quizTitle,
                           score: widget.score,
                           time: formattedTime,
-                          errors: correctAnswers,
+                          errors: 3 - correctAnswers,
                         );
 
                         CompletedService.instance.setQuizAnalyticsForQuiz(
@@ -334,7 +334,7 @@ class _QuizCompletedViewState extends State<QuizCompletedView>
           Container(
             padding: const EdgeInsets.all(6),
             decoration: BoxDecoration(
-              color: color.withOpacity(0.1),
+              color: color.withValues(alpha: 0.1),
               shape: BoxShape.circle,
             ),
             child: Icon(icon, color: color, size: 20),

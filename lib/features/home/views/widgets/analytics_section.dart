@@ -35,7 +35,6 @@ class _AnalyticsSectionState extends State<AnalyticsSection> {
 
     quizData = await quizAnalyticsService.getQuizAnalytics();
 
-    print(quizData);
     setState(() {});
   }
 
@@ -78,7 +77,7 @@ class _AnalyticsSectionState extends State<AnalyticsSection> {
                     borderRadius: BorderRadius.circular(20),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.05),
+                        color: Colors.black.withValues(alpha: 0.05),
                         blurRadius: 10,
                         offset: const Offset(0, 6),
                       ),
@@ -94,7 +93,7 @@ class _AnalyticsSectionState extends State<AnalyticsSection> {
                     ),
                     leading: CircleAvatar(
                       radius: 24,
-                      backgroundColor: statusColor.withOpacity(0.1),
+                      backgroundColor: statusColor.withValues(alpha: 0.1),
                       child: Icon(
                         getStatusIcon(quiz['score']),
                         color: statusColor,
@@ -147,7 +146,7 @@ class _AnalyticsSectionState extends State<AnalyticsSection> {
                         vertical: 6,
                       ),
                       decoration: BoxDecoration(
-                        color: statusColor.withOpacity(0.12),
+                        color: statusColor.withValues(alpha: 0.12),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Text(

@@ -28,7 +28,7 @@ class QuizQuestionCard extends StatelessWidget {
               decoration: BoxDecoration(
                 color: const Color(0xFFFDEAEA),
                 borderRadius: BorderRadius.circular(24),
-                border: Border.all(color: primaryRed.withOpacity(0.3)),
+                border: Border.all(color: primaryRed.withValues(alpha: 0.3)),
               ),
               child: Text(
                 question,

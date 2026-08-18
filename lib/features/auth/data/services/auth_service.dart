@@ -9,8 +9,7 @@ class AuthService {
   static final AuthService instance = AuthService._();
 
   final _auth = Supabase.instance.client.auth;
-  static Future<void> getUserName() async {}
-  static Future<void> getUserEmail() async {}
+
   Future signUpUser({
     required String email,
     required String password,
@@ -65,6 +64,8 @@ class AuthService {
       final prefs = await SharedPreferences.getInstance();
       await prefs.clear();
       await _auth.signOut();
-    } catch (e) {}
+    } catch (e) {
+      debugPrint('Error during logout: $e');
+    }
   }
 }

@@ -86,7 +86,7 @@ class _RecentQuizContainerState extends State<RecentQuizContainer> {
                   Container(
                     padding: const EdgeInsets.all(6),
                     decoration: BoxDecoration(
-                      color: Colors.red.withOpacity(0.1),
+                      color: Colors.red.withValues(alpha: 0.1),
                       shape: BoxShape.circle,
                     ),
                     child: const Icon(Icons.quiz, color: Colors.red, size: 18),
@@ -103,7 +103,7 @@ class _RecentQuizContainerState extends State<RecentQuizContainer> {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
             decoration: BoxDecoration(
-              color: _getScoreColor(80).withOpacity(0.1),
+              color: _getScoreColor(80).withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Text(

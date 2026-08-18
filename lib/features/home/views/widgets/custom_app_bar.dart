@@ -15,10 +15,11 @@ class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
 class _CustomAppBarState extends State<CustomAppBar> {
   String username = '';
 
-  getUserName() async {
-    final data = await Supabase.instance.client.auth.currentUser!.userMetadata;
+  void getUserName() {
+    final user = Supabase.instance.client.auth.currentUser;
+    final displayName = user?.userMetadata?['displayName'] as String?;
     setState(() {
-      username = data!['displayName'];
+      username = displayName ?? user?.email ?? 'User';
     });
   }
 

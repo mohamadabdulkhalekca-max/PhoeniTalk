@@ -10,6 +10,7 @@ class RecentQuizService {
             .from('recent_quiz')
             .select()
             .eq('user_id', Supabase.instance.client.auth.currentUser!.id)
+            .order('created_at', ascending: false)
             .limit(1)
             .single();
 

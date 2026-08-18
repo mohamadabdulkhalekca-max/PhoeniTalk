@@ -23,7 +23,8 @@ class _MicroStatusState extends State<MicroStatus> {
     super.didUpdateWidget(oldWidget);
 
     if (!widget.isAnswering) {
-      _displayText = 'Tap the microphone to answer by voice';
+      _displayText =
+          'To answer a question, start with a hook that captures attention, then support your idea with reasons, examples, or explanations. Use a natural tone and pitch to show emotion, speak at a clear pace, and keep a confident stance. Focus on accurate pronunciation, make your content logical and relevant, and choose expressive vocabulary. Finally, connect your ideas smoothly with cohesive devices like “for example,” “however,” or “as a result” …';
     } else if (widget.currentTranscript?.isEmpty ?? true) {
       _displayText = 'Speak now...';
     } else {
@@ -43,7 +44,7 @@ class _MicroStatusState extends State<MicroStatus> {
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.1),
+              color: Colors.black.withValues(alpha: 0.1),
               blurRadius: 8,
               offset: const Offset(0, 2),
             ),
@@ -51,8 +52,8 @@ class _MicroStatusState extends State<MicroStatus> {
           border: Border.all(
             color:
                 widget.isAnswering
-                    ? primaryRed.withOpacity(0.3)
-                    : Colors.grey.withOpacity(0.2),
+                    ? primaryRed.withValues(alpha: 0.3)
+                    : Colors.grey.withValues(alpha: 0.2),
             width: 1.5,
           ),
         ),
@@ -89,7 +90,7 @@ class _MicroStatusState extends State<MicroStatus> {
                   _displayText,
                   key: ValueKey(_displayText),
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 13,
                     color: widget.isAnswering ? Colors.black87 : Colors.black54,
                     height: 1.4,
                   ),

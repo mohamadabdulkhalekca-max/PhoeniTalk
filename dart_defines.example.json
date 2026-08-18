@@ -1,0 +1,6 @@
+{
+  "SUPABASE_URL": "https://your-project.supabase.co",
+  "SUPABASE_ANON_KEY": "your-supabase-anon-key",
+  "GEMINI_API_KEY": "your-gemini-api-key",
+  "DEEPGRAM_API_KEY": "your-deepgram-api-key"
+}

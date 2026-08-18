@@ -98,7 +98,7 @@ class MainQuizButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
             boxShadow: [
               BoxShadow(
-                color: Colors.redAccent.withOpacity(0.3),
+                color: Colors.redAccent.withValues(alpha: 0.3),
                 blurRadius: 12,
                 offset: const Offset(0, 6),
               ),
@@ -110,7 +110,7 @@ class MainQuizButton extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.2),
+                  color: Colors.white.withValues(alpha: 0.2),
                   shape: BoxShape.circle,
                 ),
                 child: Icon(icon, size: 36, color: Colors.white),
@@ -132,7 +132,7 @@ class MainQuizButton extends StatelessWidget {
                 subtitle,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: Colors.white.withOpacity(0.9),
+                  color: Colors.white.withValues(alpha: 0.9),
                   fontSize: 14,
                   height: 1.4,
                 ),
@@ -182,7 +182,7 @@ class _SmallQuizButton extends StatelessWidget {
             ),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(isDarkMode ? 0.1 : 0.05),
+                color: Colors.black.withValues(alpha: isDarkMode ? 0.1 : 0.05),
                 blurRadius: 8,
                 offset: const Offset(0, 4),
               ),
@@ -194,7 +194,7 @@ class _SmallQuizButton extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: Colors.red.withOpacity(0.1),
+                  color: Colors.red.withValues(alpha: 0.1),
                   shape: BoxShape.circle,
                 ),
                 child: Icon(icon, color: Colors.red, size: 20),

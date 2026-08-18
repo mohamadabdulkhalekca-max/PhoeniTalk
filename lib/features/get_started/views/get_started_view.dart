@@ -17,7 +17,6 @@ class GetStartedView extends StatelessWidget {
               children: [
                 Spacer(),
                 Spacer(),
-
                 Image.asset('assets/icons/PhoeniTalk.png', height: 200),
                 Text("Welcome to PhoeniTalk!", style: TextStyle(fontSize: 20)),
                 Spacer(),
