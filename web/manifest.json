@@ -1,11 +1,11 @@
 {
-    "name": "uniapp",
-    "short_name": "uniapp",
+    "name": "PhoeniTalk",
+    "short_name": "PhoeniTalk",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "PhoeniTalk - oral quiz practice with AI feedback.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
