@@ -3,4 +3,9 @@ flutter_launcher_icons:
   image_path: "assets/icons/PhoeniTalk.png"
 
   android: "launcher_icon"
-  min_sdk_android: 21 
+  min_sdk_android: 21
+  ios: true
+  remove_alpha_ios: true
+  web:
+    generate: true
+    image_path: "assets/icons/PhoeniTalk.png"
